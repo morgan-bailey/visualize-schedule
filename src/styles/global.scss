@@ -1,0 +1,84 @@
+$buffer: 5px;
+
+body {
+  font-family: Tahoma, sans-serif;
+}
+
+.schedule {
+  width: 100%;
+  height: 100%;
+  padding: $buffer;
+  display: flex;
+
+  .timeslot-headings-column-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-right: $buffer;
+
+    .buffer {
+      height: 100%;
+    }
+
+    .timeslot-headings {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: end;
+      height: 100%;
+    }
+  }
+
+  .day-headings-grid-column-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .day-headings {
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: $buffer;
+
+      .day-heading {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    .grid {
+      display: flex;
+      height: 100%;
+
+      .day {
+        width: 100%;
+        position: relative;
+
+        .timeslots {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+
+          .timeslot {
+            height: 100%;
+            border: 1px solid #ffcc99;
+            margin-top: -1px;
+            margin-right: -1px;
+          }
+        }
+
+        .schedule-block {
+          position: absolute;
+          background-color: #6699ff;
+          border-radius: 5px;
+          margin: 0 $buffer;
+          padding: $buffer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: clip;
+        }
+      }
+    }
+  }
+}
