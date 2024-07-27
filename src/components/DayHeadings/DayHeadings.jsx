@@ -8,7 +8,11 @@ const DayHeadings = ({ bounds, onHeightChange }) => {
   const { firstDay, lastDay } = bounds;
   const days = [];
   for (let day = firstDay; day <= lastDay; day = day + 1) {
-    days.push(<div className='day-heading'>{dayToString(day)}</div>);
+    days.push(
+      <div key={day} className='day-heading'>
+        {dayToString(day)}
+      </div>,
+    );
   }
   return (
     <div ref={dayHeadingsRef} className='day-headings'>

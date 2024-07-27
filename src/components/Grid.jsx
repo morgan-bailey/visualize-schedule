@@ -9,7 +9,7 @@ const Grid = ({ data, bounds, marginBottom }) => {
   const days = [];
   for (let day = firstDay; day <= lastDay; day = day + 1) {
     const blocks = getBlocksByDay(day);
-    days.push(<Day day={day} gridBounds={bounds} scheduledBlocks={blocks} />);
+    days.push(<Day key={day} day={day} gridBounds={bounds} scheduledBlocks={blocks} />);
   }
 
   return (
