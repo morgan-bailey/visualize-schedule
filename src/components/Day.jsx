@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import getTimeString from '../tools/getTimeString';
 import { useMeasure } from 'react-use';
+import BreakpointContext from './BreakpointContext/BreakpointContext';
 
 const Day = ({ day, gridBounds, scheduledBlocks }) => {
+  const { xxs, xs } = useContext(BreakpointContext);
+
   const { firstTime, numTimeslots } = gridBounds;
+
   const [ref, { width, height }] = useMeasure();
   const MARGINS_X = 5;
   const PADDING_X = 5;
@@ -37,7 +41,7 @@ const Day = ({ day, gridBounds, scheduledBlocks }) => {
       height: `${height}px`,
       width: `${computedWidth}px`,
     };
-    const text = `${getTimeString(startTime)} - ${getTimeString(endTime)}`;
+    const text = xxs || xs ? '' : `${getTimeString(startTime)} - ${getTimeString(endTime)}`;
     return (
       <div key={i} className='schedule-block' style={style}>
         {text}

@@ -1,4 +1,4 @@
-import Schedule from '../components/Schedule/Schedule';
+import Schedule from '../components/Schedule/';
 import '../styles/global.scss';
 export default {
   title: 'Schedule',
@@ -19,7 +19,7 @@ export const Example = {
   },
   decorators: [
     (Story) => (
-      <div style={{ margin: '3em', height: '400px' }}>
+      <div style={{ margin: '3em', height: '10rem', width: '20rem' }}>
         <Story />
       </div>
     ),

@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import getTimeString from '../../tools/getTimeString';
 import useMeasurements from './useMeasurements';
+import BreakpointContext from '../BreakpointContext/BreakpointContext';
 
 const TimeslotHeadings = ({ bounds, dayHeadingsHeight, onTextHeightChange }) => {
   const { firstTimeslotHeadingRef, bufferHeight } = useMeasurements({ onTextHeightChange, dayHeadingsHeight });
+
+  const { xxs } = useContext(BreakpointContext);
 
   const { firstTime, numTimeslots } = bounds;
 
   const timeslotHeadings = [];
   for (let i = 0; i <= numTimeslots; i = i + 1) {
-    const timeslotHeadingTime = new Date(firstTime);
-    timeslotHeadingTime.setHours(timeslotHeadingTime.getHours() + i);
+    let text;
+    if (xxs) {
+      text = '';
+    } else {
+      const timeslotHeadingTime = new Date(firstTime);
+      timeslotHeadingTime.setHours(timeslotHeadingTime.getHours() + i);
+      text = getTimeString(timeslotHeadingTime);
+    }
     timeslotHeadings.push(
       <div key={i} ref={i === 0 ? firstTimeslotHeadingRef : null} className='timeslot-heading'>
-        {getTimeString(timeslotHeadingTime)}
+        {text}
       </div>,
     );
   }

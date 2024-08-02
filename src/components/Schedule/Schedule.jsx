@@ -12,7 +12,7 @@ const Schedule = ({ data }) => {
   const parsedData = parse(data);
   const bounds = getBounds(parsedData);
   return (
-    <div className='schedule'>
+    <>
       <TimeslotHeadings
         bounds={bounds}
         dayHeadingsHeight={dayHeadingsHeight}
@@ -22,7 +22,7 @@ const Schedule = ({ data }) => {
         <DayHeadings bounds={bounds} onHeightChange={setDayHeadingsHeight} />
         <Grid data={parsedData} bounds={bounds} marginBottom={gridMarginBottom} />
       </div>
-    </div>
+    </>
   );
 };
 
