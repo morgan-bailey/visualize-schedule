@@ -10,6 +10,7 @@ body {
   height: 100%;
   padding: $buffer;
   display: flex;
+  box-sizing: border-box;
 
   .timeslot-headings-column-wrapper {
     display: flex;
@@ -62,7 +63,7 @@ body {
 
           .timeslot {
             height: 100%;
-            border: 1px solid #ffcc99;
+            border: 1px solid #ddd;
             margin-top: -1px;
             margin-right: -1px;
           }

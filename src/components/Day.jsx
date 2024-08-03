@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import getTimeString from '../tools/getTimeString';
 import { useMeasure } from 'react-use';
 import BreakpointContext from './BreakpointContext/BreakpointContext';
 
@@ -33,15 +32,16 @@ const Day = ({ day, gridBounds, scheduledBlocks }) => {
     return Math.floor((minuteDifference * height) / totalTimeslotMinutes - 2 * PADDING);
   };
 
-  const blocks = scheduledBlocks.map(({ startTime, endTime }, i) => {
+  const blocks = scheduledBlocks.map(({ startTime, endTime, label, color }, i) => {
     const top = getTopPosition(startTime);
     const height = getHeight(startTime, endTime);
     const style = {
       top: `${top}px`,
       height: `${height}px`,
       width: `${computedWidth}px`,
+      backgroundColor: color,
     };
-    const text = xxs || xs ? '' : `${getTimeString(startTime)} - ${getTimeString(endTime)}`;
+    const text = xxs || xs ? '' : label;
     return (
       <div key={i} className='schedule-block' style={style}>
         {text}
