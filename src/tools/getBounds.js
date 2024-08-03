@@ -1,10 +1,10 @@
 const getBounds = (data) => {
   let firstDay, lastDay, firstTime, lastTime;
   data.forEach(({ startTime, endTime, day }) => {
-    if (!firstDay || day < firstDay) {
+    if (firstDay === undefined || day < firstDay) {
       firstDay = day;
     }
-    if (!lastDay || day > lastDay) {
+    if (lastDay === undefined || day > lastDay) {
       lastDay = day;
     }
     if (!firstTime || startTime < firstTime) {
