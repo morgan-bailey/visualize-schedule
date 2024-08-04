@@ -1,3 +1,5 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
 $buffer: 5px;
 
 body {
@@ -71,6 +73,7 @@ body {
 
         .schedule-block {
           position: absolute;
+          box-sizing: content-box;
           background-color: #6699ff;
           border-radius: 5px;
           margin: 0 $buffer;

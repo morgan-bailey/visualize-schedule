@@ -1,21 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useMeasure } from 'react-use';
-import BreakpointContext from './BreakpointContext/BreakpointContext';
+import ScheduleBlock from './ScheduleBlock';
 
 const Day = ({ day, gridBounds, scheduledBlocks }) => {
-  const { xxs, xs } = useContext(BreakpointContext);
-
   const { firstTime, numTimeslots } = gridBounds;
 
   const [ref, { width, height }] = useMeasure();
-  const MARGINS_X = 5;
-  const PADDING_X = 5;
-  const computedWidth = Math.floor(width - 2 * MARGINS_X - 2 * PADDING_X);
-
-  const timeslots = [];
-  for (let i = 0; i < numTimeslots; i = i + 1) {
-    timeslots.push(<div key={i} className='timeslot'></div>);
-  }
+  const SCHEDULE_BLOCK_MARGIN_X = 5;
+  const SCHEDULE_BLOCK_PADDING_X = 5;
+  const computedWidth = Math.round(width - 2 * SCHEDULE_BLOCK_MARGIN_X - 2 * SCHEDULE_BLOCK_PADDING_X);
 
   const getTopPosition = (startTime) => {
     const hourDifferenceToMinutes = 60 * (startTime.getHours() - firstTime.getHours());
@@ -32,27 +25,26 @@ const Day = ({ day, gridBounds, scheduledBlocks }) => {
     return Math.floor((minuteDifference * height) / totalTimeslotMinutes - 2 * PADDING);
   };
 
-  const blocks = scheduledBlocks.map(({ startTime, endTime, label, color }, i) => {
-    const top = getTopPosition(startTime);
-    const height = getHeight(startTime, endTime);
-    const style = {
-      top: `${top}px`,
-      height: `${height}px`,
-      width: `${computedWidth}px`,
-      backgroundColor: color,
-    };
-    const text = xxs || xs ? '' : label;
-    return (
-      <div key={i} className='schedule-block' style={style}>
-        {text}
-      </div>
-    );
-  });
+  const timeslots = [];
+  for (let i = 0; i < numTimeslots; i = i + 1) {
+    timeslots.push(<div key={i} className='timeslot'></div>);
+  }
 
   return (
     <div key={day} ref={ref} className='day'>
       <div className='timeslots'>{timeslots}</div>
-      <div>{blocks}</div>
+      <div>
+        {scheduledBlocks.map(({ startTime, endTime, label, color }, i) => (
+          <ScheduleBlock
+            key={i}
+            label={label}
+            color={color}
+            top={getTopPosition(startTime)}
+            width={computedWidth}
+            height={getHeight(startTime, endTime)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
