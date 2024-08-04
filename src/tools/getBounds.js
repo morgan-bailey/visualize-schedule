@@ -1,4 +1,4 @@
-const getBounds = (data) => {
+const getBounds = (data, firstDayOfWeek) => {
   let firstDay, lastDay, firstTime, lastTime;
   data.forEach(({ startTime, endTime, day }) => {
     if (firstDay === undefined || day < firstDay) {
@@ -14,9 +14,9 @@ const getBounds = (data) => {
       lastTime = endTime;
     }
   });
-  const numDays = firstDay && lastDay && lastDay - firstDay + 1;
+  const computedFirstDayOfWeek = firstDayOfWeek === undefined ? firstDay : firstDayOfWeek;
   const numTimeslots = firstTime && lastTime && lastTime.getHours() - firstTime.getHours() + 1;
-  return { firstDay, lastDay, numDays, firstTime, lastTime, numTimeslots };
+  return { firstDay, lastDay, firstDayOfWeek: computedFirstDayOfWeek, firstTime, lastTime, numTimeslots };
 };
 
 export default getBounds;

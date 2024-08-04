@@ -2,14 +2,13 @@ import React, { useContext } from 'react';
 import dayToString, { dayToAbbrString } from '../../tools/dayToString';
 import useMeasurements from './useMeasurements';
 import BreakpointContext from '../BreakpointContext/BreakpointContext';
+import dayIterator from '../../tools/dayIterator';
 
 const DayHeadings = ({ bounds, onHeightChange }) => {
   const { dayHeadingsRef } = useMeasurements({ onHeightChange });
   const { xxs, xs, sm } = useContext(BreakpointContext);
 
-  const { firstDay, lastDay } = bounds;
-  const days = [];
-  for (let day = firstDay; day <= lastDay; day = day + 1) {
+  const days = dayIterator(bounds, (day) => {
     let text;
     if (xxs) {
       text = '';
@@ -18,12 +17,13 @@ const DayHeadings = ({ bounds, onHeightChange }) => {
     } else {
       text = dayToString(day);
     }
-    days.push(
+    return (
       <div key={day} className='day-heading'>
         {text}
-      </div>,
+      </div>
     );
-  }
+  });
+
   return (
     <div ref={dayHeadingsRef} className='day-headings'>
       {days}
