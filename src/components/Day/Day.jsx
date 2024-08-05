@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMeasure } from 'react-use';
-import ScheduleBlock from './ScheduleBlock';
+import ScheduleBlock from '../ScheduleBlock';
 
 const Day = ({ day, gridBounds, scheduledBlocks }) => {
   const { firstTime, numTimeslots } = gridBounds;

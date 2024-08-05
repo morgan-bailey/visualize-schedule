@@ -1,6 +1,6 @@
 import React from 'react';
-import Day from './Day';
-import dayIterator from '../tools/dayIterator';
+import Day from '../Day';
+import dayIterator from '../../tools/dayIterator';
 
 const Grid = ({ data, bounds, marginBottom }) => {
   const getBlocksByDay = (day) => data.filter((entry) => entry.day === day);
