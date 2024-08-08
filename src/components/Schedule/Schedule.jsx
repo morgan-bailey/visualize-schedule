@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import getBounds from '../../tools/getBounds';
 import parse from '../../tools/parse';
 import DayHeadings from '../DayHeadings';
 import Grid from '../Grid';
 import TimeslotHeadings from '../TimeslotHeadings';
 import useMeasurements from './useMeasurements';
+import ConfigContext from '../ConfigContext/ConfigContext';
 
-const Schedule = ({ data, firstDayOfWeek }) => {
+const Schedule = ({ data }) => {
+  const { firstDayOfWeek } = useContext(ConfigContext);
   const { dayHeadingsHeight, gridMarginBottom, setDayHeadingsHeight, setTimeslotHeadingTextHeight } = useMeasurements();
 
   const parsedData = parse(data);
-  const parsedFirstDayOfWeek = firstDayOfWeek ? parseInt(firstDayOfWeek, 10) : firstDayOfWeek;
-  const bounds = getBounds(parsedData, parsedFirstDayOfWeek);
+  const bounds = getBounds(parsedData, firstDayOfWeek);
   return (
     <>
       <TimeslotHeadings

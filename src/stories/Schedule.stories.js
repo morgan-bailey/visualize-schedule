@@ -14,11 +14,14 @@ const data = [
   { startTime: '8:15', endTime: '10:30', day: '4', label: 'Dana', color: colorPalette[3] },
   { startTime: '8:00', endTime: '8:30', day: '6', label: 'Emily', color: colorPalette[4] },
 ];
+const config = {
+  firstDayOfWeek: '1',
+};
 
 export const Example = {
   args: {
     data,
-    firstDayOfWeek: '1',
+    config,
   },
   decorators: [
     (Story) => (
