@@ -2,18 +2,19 @@ import React, { useContext } from 'react';
 import getTimeString from '../../tools/getTimeString';
 import useMeasurements from './useMeasurements';
 import BreakpointContext from '../BreakpointContext/BreakpointContext';
+import ConfigContext from '../ConfigContext/ConfigContext';
 
 const TimeslotHeadings = ({ bounds, dayHeadingsHeight, onTextHeightChange }) => {
   const { firstTimeslotHeadingRef, bufferHeight } = useMeasurements({ onTextHeightChange, dayHeadingsHeight });
-
   const { xxs } = useContext(BreakpointContext);
+  const { displayTimeHeadings } = useContext(ConfigContext);
 
   const { firstTime, numTimeslots } = bounds;
 
   const timeslotHeadings = [];
   for (let i = 0; i <= numTimeslots; i = i + 1) {
     let text;
-    if (xxs) {
+    if (!displayTimeHeadings && xxs) {
       text = '';
     } else {
       const timeslotHeadingTime = new Date(firstTime);
