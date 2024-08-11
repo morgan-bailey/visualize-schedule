@@ -1,12 +1,9 @@
-const dayToString = (day) => {
-  const fullString = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  return fullString[day];
+import dayjs from 'dayjs';
+
+const dayToString = (day, format) => {
+  return dayjs()
+    .day(day)
+    .format(format || 'dddd');
 };
 
-const dayToAbbrString = (day) => {
-  const shortenedString = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-  return shortenedString[day];
-};
-
-export { dayToAbbrString };
 export default dayToString;

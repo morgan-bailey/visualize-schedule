@@ -7,7 +7,7 @@ import ConfigContext from '../ConfigContext/ConfigContext';
 const TimeslotHeadings = ({ bounds, dayHeadingsHeight, onTextHeightChange }) => {
   const { firstTimeslotHeadingRef, bufferHeight } = useMeasurements({ onTextHeightChange, dayHeadingsHeight });
   const { xxs } = useContext(BreakpointContext);
-  const { displayTimeHeadings } = useContext(ConfigContext);
+  const { displayTimeHeadings, timeFormat } = useContext(ConfigContext);
 
   const { firstTime, numTimeslots } = bounds;
 
@@ -19,7 +19,7 @@ const TimeslotHeadings = ({ bounds, dayHeadingsHeight, onTextHeightChange }) => 
     } else {
       const timeslotHeadingTime = new Date(firstTime);
       timeslotHeadingTime.setHours(timeslotHeadingTime.getHours() + i);
-      text = getTimeString(timeslotHeadingTime);
+      text = getTimeString(timeslotHeadingTime, timeFormat);
     }
     timeslotHeadings.push(
       <div key={i} ref={i === 0 ? firstTimeslotHeadingRef : null} className='timeslot-heading'>
